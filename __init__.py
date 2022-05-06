@@ -22,3 +22,36 @@ bl_info = {
     "category" : "Generic"
 }
 
+from .interface.node_tree import BlendiniNodeTree, MyCustomNode, MyCustomSocket, node_categories
+from .nodes.Groups.node_group import BlendiniNodeGroup, BDN_OT_AddBasicNodeGroup
+
+
+import nodeitems_utils
+from nodeitems_utils import NodeCategory, NodeItem
+
+classes = (
+    BDN_OT_AddBasicNodeGroup,
+    BlendiniNodeTree,
+    BlendiniNodeGroup,
+    MyCustomNode,
+    MyCustomSocket,
+)
+
+def register():
+    from bpy.utils import register_class
+    for cls in classes:
+        register_class(cls)
+
+    nodeitems_utils.register_node_categories('CUSTOM_NODES', node_categories)
+
+
+def unregister():
+    nodeitems_utils.unregister_node_categories('CUSTOM_NODES')
+
+    from bpy.utils import unregister_class
+    for cls in reversed(classes):
+        unregister_class(cls)
+
+
+if __name__ == "__main__":
+    register()
