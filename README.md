@@ -1,3 +1,3 @@
 # Blendini
 
-A WIP blender addon that introduces a procedural houdini-like workflow to blender
+This was a WIP until Geometry Nodes came along which basically made this addon redundant
